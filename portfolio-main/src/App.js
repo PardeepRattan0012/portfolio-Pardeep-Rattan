@@ -12,8 +12,6 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { inject } from "@vercel/analytics";
-import { injectSpeedInsights } from "@vercel/speed-insights";
 
 // Lazy load route components
 const Home = React.lazy(() => import("./components/Home/Home"));
@@ -21,20 +19,16 @@ const About = React.lazy(() => import("./components/About/About"));
 const Projects = React.lazy(() => import("./components/Projects/Projects"));
 const Resume = React.lazy(() => import("./components/Resume/ResumeNew"));
 const Footer = React.lazy(() => import("./components/Footer"));
+
 function App() {
-  const [load, upadateLoad] = useState(true);
+  const [load, updateLoad] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      upadateLoad(false);
+      updateLoad(false);
     }, 1200);
 
     return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    inject();
-    injectSpeedInsights();
   }, []);
 
   return (
